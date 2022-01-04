@@ -1,0 +1,27 @@
+{
+  "name": "oneappbackend",
+  "version": "1.0.0",
+  "description": "backend for social media app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "express",
+    "backend"
+  ],
+  "author": "Angappan",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "date-format": "^3.0.0",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "nodemon": "^2.0.15"
+  }
+}
