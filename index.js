@@ -2,7 +2,7 @@ import format from "date-format";
 import express from "express";
 
 const app = express();
-const PORT = 4000 || process.env.PORT
+const PORT = process.env.PORT || 4000
 
 app.get('/home', (req, res) => {
     res.send("Hello world this is Home path")
