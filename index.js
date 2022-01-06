@@ -1,8 +1,13 @@
 import format from "date-format";
 import express from "express";
+import swaggerUi from "swagger-ui-express";
+import YAML from 'yamljs';
 
+const swaggerDocument = YAML.load("./swagger.yml")
 const app = express();
 const PORT = process.env.PORT || 4000
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/home', (req, res) => {
     res.send("Hello world this is Home path")
