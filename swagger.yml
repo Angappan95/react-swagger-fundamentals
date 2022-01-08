@@ -19,3 +19,51 @@ components:
     BearerAuth:
       type: http
       scheme: bearer  
+
+paths:
+  /home:
+    summary: Go to Home page
+    description: >
+      Health check
+    get:
+      responses: 
+        '200':
+          description: OK
+          content: 
+            application/json:
+              schema: 
+                type: object
+                properties: 
+                  responses: 
+                    type: string
+
+  /get/insta:
+    get:
+      summary: Get instagram data
+      responses: 
+        '200': 
+          desciption: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        name: 
+                          type: string
+                        followers:
+                          type: integer
+                        follows:
+                          type: integer                    
+                  date: 
+                    type: string
+                        
+                    
+                    
+
+                
+                
