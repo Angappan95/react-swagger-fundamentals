@@ -6,8 +6,14 @@ info:
   version: 0.0.1
 
 servers:
-  - url: http://localhost:4000/
+  - url: "{protocol}://localhost:4000/"
     description: LOCALHOST
+    variables:
+      protocol: 
+        default: http
+        enum:
+          - http
+          - https
   - url: http://localhost:5000/
     description: DONT USE
 
