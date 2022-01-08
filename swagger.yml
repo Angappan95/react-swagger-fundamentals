@@ -22,10 +22,9 @@ components:
 
 paths:
   /home:
-    summary: Go to Home page
-    description: >
-      Health check
     get:
+      summary: Go to Home page
+      description: Health check
       responses: 
         '200':
           description: OK
@@ -62,7 +61,27 @@ paths:
                   date: 
                     type: string
                         
-                    
+  /get/data/{id}:
+    post:
+      summary: Get data for debugging purposes
+      parameters: 
+        - name: id
+          in: path
+          description: data id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses: 
+        '200': 
+          descrpition: OK
+          content: 
+            applications/json:
+              schema:
+                type: object
+                properties:
+                  data: 
+                    type: string
                     
 
                 
