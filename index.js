@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 4000
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/home', (req, res) => {
-    res.send("Hello world this is Home path")
+    res.status(200).json({response: "Hello world this is Home path"})
 })
 
 app.get('/get/insta', (req, res) => {
