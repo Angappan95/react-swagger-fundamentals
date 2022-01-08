@@ -29,6 +29,8 @@ components:
 paths:
   /home:
     get:
+      tags:
+        - Home
       summary: Go to Home page
       description: Health check
       responses: 
@@ -44,6 +46,8 @@ paths:
 
   /get/insta:
     get:
+      tags:
+        - Get Data
       summary: Get instagram data
       responses: 
         '200': 
@@ -69,6 +73,8 @@ paths:
                         
   /get/data/{id}:
     get:
+      tags:
+        - Get Data
       summary: Get data for debugging purposes
       parameters: 
         - name: id
