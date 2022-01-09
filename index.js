@@ -43,20 +43,13 @@ let profiles = [
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.get('/home', (req, res) => {
+app.get('/home', (req, res) => {   
     res.status(200).json({ response: "Hello world this is Home path" })
 })
 
 app.get('/get/insta', (req, res) => {
-    const instaData = {
-        users: [{
-            name: "instaUser",
-            followers: 50,
-            follows: 100
-        }],
-        date: Date.now()
-    }
-    return res.status(200).json(instaData)
+    let result = profiles.filter(profile => profile.type === "insta")
+    return res.status(200).json(result)
 })
 
 app.get('/get/facebook', (req, res) => {
