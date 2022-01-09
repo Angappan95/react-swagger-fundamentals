@@ -7,10 +7,44 @@ const swaggerDocument = YAML.load("./swagger.yml")
 const app = express();
 const PORT = process.env.PORT || 4000
 
+let profiles = [
+    {
+        name: "User1",
+        type: "insta",
+        followers: 50,
+        follows: 100
+    }, {
+        name: "User1",
+        type: "facebook",
+        followers: 50,
+        follows: 100
+    }, {
+        name: "User1",
+        type: "linkedin",
+        followers: 50,
+        follows: 100
+    }, {
+        name: "User2",
+        type: "glassdoor",
+        followers: 50,
+        follows: 100
+    }, {
+        name: "User2",
+        type: "insta",
+        followers: 50,
+        follows: 100
+    }, {
+        name: "User3",
+        type: "insta",
+        followers: 50,
+        follows: 100
+    },
+];
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/home', (req, res) => {
-    res.status(200).json({response: "Hello world this is Home path"})
+    res.status(200).json({ response: "Hello world this is Home path" })
 })
 
 app.get('/get/insta', (req, res) => {
@@ -49,8 +83,8 @@ app.get('/get/linkedin', (req, res) => {
     return res.status(200).json(linkedInData)
 })
 
-app.get('/get/data/:id', (req, res)=> {
-    return res.status(200).json({data: req.params.id})
+app.get('/get/data/:id', (req, res) => {
+    return res.status(200).json({ data: req.params.id })
 })
 
 app.listen(PORT, () => {
