@@ -53,27 +53,13 @@ app.get('/get/insta', (req, res) => {
 })
 
 app.get('/get/facebook', (req, res) => {
-    const facebookData = {
-        users: [{
-            name: "facebookUser",
-            followers: 50,
-            follows: 100
-        }],
-        date: Date.now()
-    }
-    return res.status(200).json(facebookData)
+    let result = profiles.filter(profile => profile.type === "facebook")
+    return res.status(200).json(result)
 })
 
 app.get('/get/linkedin', (req, res) => {
-    const linkedInData = {
-        users: [{
-            name: "linkedInUser",
-            followers: 50,
-            follows: 100
-        }],
-        date: Date.now()
-    }
-    return res.status(200).json(linkedInData)
+    let result = profiles.filter(profile => profile.type === "linkedin")
+    return res.status(200).json(result)
 })
 
 app.get('/get/data/:id', (req, res) => {
