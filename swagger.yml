@@ -10,10 +10,10 @@ servers:
     description: LOCALHOST
     variables:
       protocol: 
-        default: http
         enum:
           - http
           - https
+        default: http
   - url: http://localhost:5000/
     description: DONT USE
 
