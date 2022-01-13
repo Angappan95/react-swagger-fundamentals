@@ -62,6 +62,8 @@ paths:
                     items: 
                       type: object
                       properties: 
+                        id: 
+                          type: integer
                         name: 
                           type: string
                         followers:
@@ -89,6 +91,8 @@ paths:
                     items: 
                       type: object
                       properties: 
+                        id: 
+                          type: integer
                         name: 
                           type: string
                         followers:
@@ -116,6 +120,8 @@ paths:
                     items: 
                       type: object
                       properties: 
+                        id: 
+                          type: integer
                         name: 
                           type: string
                         followers:
