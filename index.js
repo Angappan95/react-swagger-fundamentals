@@ -9,31 +9,37 @@ const PORT = process.env.PORT || 4000
 
 let profiles = [
     {
+        id: 10001,
         name: "User1",
         type: "insta",
         followers: 50,
         follows: 100
     }, {
+        id: 10001,
         name: "User1",
         type: "facebook",
         followers: 50,
         follows: 100
     }, {
+        id: 10001,
         name: "User1",
         type: "linkedin",
         followers: 50,
         follows: 100
     }, {
+        id: 10002,
         name: "User2",
         type: "glassdoor",
         followers: 50,
         follows: 100
     }, {
+        id: 10002,
         name: "User2",
         type: "insta",
         followers: 50,
         follows: 100
     }, {
+        id: 10003,
         name: "User3",
         type: "insta",
         followers: 50,
@@ -49,17 +55,17 @@ app.get('/home', (req, res) => {
 
 app.get('/get/insta', (req, res) => {
     let result = profiles.filter(profile => profile.type === "insta")
-    return res.status(200).json(result)
+    return res.status(200).json({users: result})
 })
 
 app.get('/get/facebook', (req, res) => {
     let result = profiles.filter(profile => profile.type === "facebook")
-    return res.status(200).json(result)
+    return res.status(200).json({users: result})
 })
 
 app.get('/get/linkedin', (req, res) => {
     let result = profiles.filter(profile => profile.type === "linkedin")
-    return res.status(200).json(result)
+    return res.status(200).json({users: result})
 })
 
 app.get('/get/data/:id', (req, res) => {
