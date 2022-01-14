@@ -215,6 +215,7 @@ paths:
                     type: string
                   error: 
                     type: string
+  
   /add/profile:
     post:
       tags: 
@@ -222,6 +223,13 @@ paths:
       summary: Add profile
       consumes: 
         - application/json
+      parameters:
+        - in: header
+          name: X-Request-ID
+          schema:
+            type: string
+            format: uuid
+            required: true
       requestBody: 
         required: true
         content:
@@ -258,6 +266,7 @@ paths:
                     type: boolean
                   error:
                     type: string
+  
   /add/profile/bulk:
     post:
       tags: 
