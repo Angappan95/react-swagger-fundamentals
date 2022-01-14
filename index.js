@@ -85,15 +85,30 @@ app.get('/get/data/:id', (req, res) => {
     return res.status(200).json({ data: req.params.id })
 })
 
+app.get('/get/data', (req, res) => {
+    let id = Number(req.query.id)
+    let type = req.query.type
+    let result = profiles.filter(profile => ((profile.type === type) && (profile.id == id)))
+    try {
+        if (result.length > 0) {
+            return res.status(200).json({ data: result })
+        } else {
+            return res.status(400).json({ message: 'No records found' })
+        }
+    } catch (err) {
+        return res.status(500).json({message: 'Something went wrong', error: err})
+    }
+})
+
 app.post('/add/profile', (req, res) => {
     let data = req.body
     console.log(data)
     try {
         profiles.push(data)
-        return res.status(201).json({isSuccess: true})
+        return res.status(201).json({ isSuccess: true })
     }
     catch (err) {
-        return res.status(500).json({isSucess: false, error: err})
+        return res.status(500).json({ isSucess: false, error: err })
     }
 
 })

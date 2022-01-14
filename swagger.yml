@@ -47,7 +47,7 @@ paths:
   /get/insta:
     get:
       tags:
-        - Profiles
+        - Get Data
       summary: Get instagram data
       responses: 
         '200': 
@@ -76,7 +76,7 @@ paths:
   /get/facebook:
     get:
       tags:
-        - Profiles
+        - Get Data
       summary: Get facebook data
       responses: 
         '200': 
@@ -105,7 +105,7 @@ paths:
   /get/linkedin:
     get:
       tags:
-        - Profiles
+        - Get Data
       summary: Get linkedin data
       responses: 
         '200': 
@@ -154,7 +154,67 @@ paths:
                 properties:
                   data: 
                     type: string
-                    
+
+  /get/data:
+    get:
+      tags: 
+        - Get Data
+      summary: Get Data using id & profile type
+      parameters:
+        - name : id
+          in: query
+          description: data id
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: type
+          in: query
+          description: type of the profiles
+          schema: 
+            type: string
+            enum: 
+              - insta
+              - facebook
+              - linkedin
+              - glassdoor
+            default: linkedin
+      responses: 
+        '200': 
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  type: 
+                    type: string
+                  followers:
+                    type: integer
+                  follows:
+                    type: integer
+        '400':
+          description: 'Bad Request'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+        '500':
+          description: 'Server Error'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+                  error: 
+                    type: string
   /add/profile:
     post:
       tags: 
@@ -198,6 +258,7 @@ paths:
                     type: boolean
                   error:
                     type: string
+  
                 
 
                 
