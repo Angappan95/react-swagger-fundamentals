@@ -155,6 +155,50 @@ paths:
                   data: 
                     type: string
                     
+  /add/profile:
+    post:
+      tags: 
+        - Profiles
+      summary: Add profile
+      consumes: 
+        - application/json
+      requestBody: 
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: 
+                  type: integer
+                name: 
+                  type: string
+                followers: 
+                  type: integer
+                follows: 
+                  type: integer
+      responses: 
+        '201':
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess: 
+                    type: boolean
+        '500':
+          description: Server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess: 
+                    type: boolean
+                  error:
+                    type: string
+                
 
                 
                 
