@@ -258,7 +258,54 @@ paths:
                     type: boolean
                   error:
                     type: string
-  
+  /add/profile/bulk:
+    post:
+      tags: 
+        - Profiles
+      summary: Add profiles passed from json file
+      requestBody: 
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file: 
+                  type: string
+                  format: binary
+            
+      responses: 
+        '201':
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess: 
+                    type: boolean
+        '400':
+          description: Bad Data
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess: 
+                    type: boolean
+                  error:
+                    type: string
+        '500':
+          description: Server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess: 
+                    type: boolean
+                  error:
+                    type: string
                 
 
                 

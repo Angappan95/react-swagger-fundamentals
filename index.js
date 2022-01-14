@@ -1,8 +1,14 @@
 import format from "date-format";
 import express from "express";
+import fileUpload from 'express-fileupload';
 import jsonschema from "jsonschema";
+import { dirname } from 'path';
 import swaggerUi from "swagger-ui-express";
+import { fileURLToPath } from 'url';
 import YAML from 'yamljs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const swaggerDocument = YAML.load("./swagger.yml")
 const app = express();
@@ -61,6 +67,8 @@ let profiles = [
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // Adding Json parser to parse the incoming json data
 app.use(express.json())
+// Adding fileUpload middleware to intercept file sent via requestBody
+app.use(fileUpload())
 
 app.get('/home', (req, res) => {
     res.status(200).json({ response: "Hello world this is Home path" })
@@ -96,7 +104,7 @@ app.get('/get/data', (req, res) => {
             return res.status(400).json({ message: 'No records found' })
         }
     } catch (err) {
-        return res.status(500).json({message: 'Something went wrong', error: err})
+        return res.status(500).json({ message: 'Something went wrong', error: err })
     }
 })
 
@@ -109,6 +117,32 @@ app.post('/add/profile', (req, res) => {
     }
     catch (err) {
         return res.status(500).json({ isSucess: false, error: err })
+    }
+
+})
+
+app.post('/add/profile/bulk', (req, res) => {
+    let file = req.files.file
+    let path = `${__dirname}/resources/${Date.now()}.json`
+    console.log(`Incoming data: \n ${file.data.toString()}`) // file.data -> returns buffer representation of file. To convert back to string use .toString function
+    let data = JSON.parse(file.data.toString()) // convert back to JSON
+
+    // Store the file under resources
+    file.mv(path, (err) => {
+        if (err) {
+            console.log(err)
+            return res.status(500).json({ isSuccess: false, error: err })
+        }
+    })
+
+    if (data instanceof Array) {
+        data.forEach(item => profiles.push(item))
+        return res.status(201).json({ isSuccess: true })
+    } else if (data instanceof Object) {
+        profiles.push(data)
+        return res.status(201).json({ isSuccess: true })
+    } else {
+        return res.status(400).json({ isSuccess: false, data })
     }
 
 })
