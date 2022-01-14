@@ -1,11 +1,13 @@
 import format from "date-format";
+import dotenv from "dotenv";
 import express from "express";
 import fileUpload from 'express-fileupload';
-import jsonschema from "jsonschema";
 import { dirname } from 'path';
 import swaggerUi from "swagger-ui-express";
 import { fileURLToPath } from 'url';
 import YAML from 'yamljs';
+dotenv.config()
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,9 +15,6 @@ const __dirname = dirname(__filename);
 const swaggerDocument = YAML.load("./swagger.yml")
 const app = express();
 const PORT = process.env.PORT || 4000
-var validator = jsonschema.Validator
-var v = new validator()
-
 var profileSchema = {
     "id": { "type": "number" },
     "name": { "type": "string" },
