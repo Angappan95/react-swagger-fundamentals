@@ -4,8 +4,8 @@
   "description": "backend for social media app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [
     "express",
@@ -20,6 +20,7 @@
     "express": "^4.17.2",
     "express-fileupload": "^1.2.1",
     "jsonschema": "^1.4.0",
+    "mongoose": "^6.1.7",
     "swagger-ui-express": "^4.3.0",
     "yamljs": "^0.3.0"
   },
